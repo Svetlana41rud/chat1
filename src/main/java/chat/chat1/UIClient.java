@@ -11,13 +11,14 @@ public class UIClient extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(UIClient.class.getResource("client-ui.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        Scene scene = new Scene(fxmlLoader.load(), 500, 350);
+        stage.setTitle("Chat!");
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
+
         launch();
     }
 }

@@ -4,5 +4,7 @@ module chat.chat1 {
 
 
     opens chat.chat1 to javafx.fxml;
+       exports chat.chat1.client;
+    opens chat.chat1.client to javafx.fxml;
     exports chat.chat1;
 }

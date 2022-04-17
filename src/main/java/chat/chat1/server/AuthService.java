@@ -1,13 +1,14 @@
 package chat.chat1.server;
 
 import java.io.Closeable;
+import java.io.IOException;
 
 public interface AuthService extends Closeable {
-    void start();
+    String getNickByLoginAndPassword(String login, String password);
 
-    String  getNickByLoginAndPassword(String  login, String password);
+    void run();
 
-
-    void close();
+    @Override
+    void close() throws IOException;
 
 }

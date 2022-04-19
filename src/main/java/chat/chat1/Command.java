@@ -17,10 +17,12 @@ public enum Command {
     AUTHOK("/authok") {
         @Override
         public String[] parse(String commandText) { //  /authok nick1
+
             return new String[]{commandText.split(COMMAND_DELIMITER)[1]};
         }
     },
     PRIVATE_MESSAGE("/w") { // /w nick1 Длинное сообщение для пользователя
+
         @Override
         public String[] parse(String commandText) {
             final String[] split = commandText.split(COMMAND_DELIMITER, 3);
@@ -29,12 +31,13 @@ public enum Command {
             return new String[]{split[1], split[2]};
         }
     },
-    END("/end") {
+    END("/end") { // /end
+
         @Override
         public String[] parse(String commandText) {
             return new String[0];
         }
-    }, // /end
+    },
     ERROR("/error") { // /error Сообщение об ошибке
 
         @Override
@@ -45,11 +48,9 @@ public enum Command {
     },
     CLIENTS("/clients") {
         @Override
-        public String[] parse(String commandText) { // /clients nick1 nick2 nick3
+        public String[] parse(String commandText) { // /clients список клиентов (nick1 nick2 nick3)
             final String[] split = commandText.split(COMMAND_DELIMITER);
-
 //            return Arrays.stream(split).skip(1).toArray(String[]::new);
-
             final String[] nicks = new String[split.length - 1];
             for (int i = 1; i < split.length; i++) {
                 nicks[i - 1] = split[i];
@@ -103,7 +104,7 @@ public enum Command {
         //      }
         final String cmd = index > 0 ? message.substring(0, index) : message;
 
-     //   return map.get(cmd);
+        //   return map.get(cmd);
 
         final Command command = map.get(cmd);
         if (command == null) {
@@ -117,9 +118,7 @@ public enum Command {
     public String collectMessage(String... params) {
         final String command = this.getCommand();
         return command +
-                (params == null
-                        ? ""
-                        : " " + String.join(" ", params)); // /authok nick1
+                (params == null ? "" : " " + String.join(" ", params)); // /authok nick1
     }
 
 }

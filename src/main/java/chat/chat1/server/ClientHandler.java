@@ -1,6 +1,7 @@
 package chat.chat1.server;
 
 import chat.chat1.Command;
+import chat.chat1.TimeoutChecker;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -66,6 +67,7 @@ public class ClientHandler {
 
     private void authenticate() {
         while (true) {
+            TimeoutChecker.set(this);
             try {
                 final String str = in.readUTF();
                 if (Command.isCommand(str)) {
@@ -135,5 +137,13 @@ public class ClientHandler {
 
     public String getNick() {
         return nick;
+    }
+
+    public void closeSocket() {
+        try {
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
